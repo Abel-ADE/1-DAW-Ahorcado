@@ -5,13 +5,12 @@
 package aforcado;
 
 /**
- * Esta clase encárgase de xerar a palabra a adiviñar. Polo momento, 
- * simplemente mantén unha lista de palabras nun array e escolle unha aleatoriamente. 
- * Máis adiante estenderemos esta clase para permitir distintos modos de xogo, 
- * que xerarán a palabra de diferentes maneiras.
+ * Esta clase enc�rgase de xerar a palabra a adivi�ar. Polo momento, 
+ * simplemente mant�n unha lista de palabras nun array e escolle unha aleatoriamente. 
+ * M�is adiante estenderemos esta clase para permitir distintos modos de xogo, 
+ * que xerar�n a palabra de diferentes maneiras.
  * 
  * @author Abel Iglesias Moure
- * @author Gabriel Julian Álvarez Gómez
  */
 public class WordGenerator {
     
@@ -21,8 +20,8 @@ public class WordGenerator {
     public static final String WORDLIST[] = {"Java", "PHP", "JavaScript", "HTML", "CSS"};
     
     /**
-     * Devolve a palabra a adiviñar.
-     * @return a palabra a adiviñar.
+     * Devolve a palabra a adivi�ar.
+     * @return a palabra a adivi�ar.
      */
     public String generateWord(){
         

@@ -11,7 +11,6 @@ import java.util.Scanner;
  * recoller o que introduza o usuario.
  *
  * @author Abel Iglesias Moure
- * @author Gabriel Julian Álvarez Gómez
  */
 public class MenuGenerator {
 
@@ -28,6 +27,19 @@ public class MenuGenerator {
         return newWordGenerator.generateWord();
 
     }
+    
+    /**
+     * Mostra a cabeceira do menú do xogo.
+     */
+    private void showHeadMenu(){
+        System.out.println("---------------------------------------------------");
+            System.out.println("Xogo do aforcado");
+            System.out.println("Esta é a palabra que tes que adiviñar: " + hangMan.showHiddenWord());
+            System.out.println("Número de intentos: " + (HangMan.MAX_FAILS - hangMan.getFails().size()));
+            System.out.println("Letras falladas: " + hangMan.getStringFails());
+            System.out.println("---------------------------------------------------");
+            System.out.println("");
+    }
 
     /**
      * Mostra o menú do xogo, que vai pedindo as letras e mostrando o avance de
@@ -35,39 +47,38 @@ public class MenuGenerator {
      * letras da palabra ou se chega ao límite de fallos.
      */
     private void showGameMenu() {
-        System.out.println("---------------------------------------------------");
-        System.out.println("Benvido ao Xogo do aforcado");
-        System.out.println("Esta é a palabra que tes que adiviñar: " + hangMan.showHiddenWord());
-        System.out.println("Número máximo de intentos: " + HangMan.MAX_FAILS);
-        System.out.println("---------------------------------------------------");
         do {
+            
+            showHeadMenu();
 
             String line;
-            
+
             do {
                 Scanner scan = new Scanner(System.in);
                 System.out.print("Introduce unha letra: ");
                 line = scan.nextLine();
-                
+
                 if (line.isEmpty()) {
                     System.out.println("Debes introducir unha letra!");
                 }
-                
+
             } while (line.isEmpty());
 
             hangMan.tryChar(Character.toUpperCase(line.charAt(0)));
 
-            System.out.println("");
-            System.out.println("Palabra a adiviñar: " + hangMan.showHiddenWord());
-            System.out.println("Letras falladas: " + hangMan.getStringFails());
-
-            if (hangMan.maxFailsExceeded()) {
-                System.out.println("");
-                System.out.println("Perdiches...");
-                System.out.println("A palabra a adiviñar era: " + hangMan.showFullWord());
-            }
-
         } while (!hangMan.isGameOver());
+
+        if (hangMan.maxFailsExceeded()) {
+            showHeadMenu();
+            
+            System.out.println("Perdiches...");
+            System.out.println("A palabra a adiviñar era: " + hangMan.showFullWord());
+            System.out.println("");
+        } else if (hangMan.getHiddenWord().isVisible()) {
+            showHeadMenu();
+            
+            System.out.println("Gañaches!!");
+        }
     }
 
     /**
@@ -77,7 +88,7 @@ public class MenuGenerator {
      */
     private boolean showExitMenu() {
         Scanner scan = new Scanner(System.in);
-        
+
         System.out.println("¿Queres saír da aplicación? - (true/false)");
         return scan.nextBoolean();
 

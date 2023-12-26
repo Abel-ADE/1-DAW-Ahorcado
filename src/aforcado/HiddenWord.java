@@ -11,7 +11,6 @@ package aforcado;
  * e comprobar se unha letra forma parte da palabra.
  * 
  * @author Abel Iglesias Moure
- * @author Gabriel Julian Álvarez Gómez
  */
 public class HiddenWord {
     

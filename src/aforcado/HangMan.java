@@ -13,7 +13,6 @@ import java.util.ArrayList;
  * palabra, para irllas mostrando e que non as introduza de novo.
  *
  * @author Abel Iglesias Moure
- * @author Gabriel Julian Álvarez Gómez
  */
 public class HangMan {
 
@@ -28,6 +27,14 @@ public class HangMan {
     // ArrayList de caracteres no que se van almacenando as letras introducidas polo usuario
     private ArrayList<Character> fails;
 
+    public HiddenWord getHiddenWord() {
+        return hiddenWord;
+    }
+
+    public void setHiddenWord(HiddenWord hiddenWord) {
+        this.hiddenWord = hiddenWord;
+    }
+    
     /**
      * Obtén a lista de caracteres fallados acumulados na partida.
      * @return a lista de caracteres fallados da partida.
