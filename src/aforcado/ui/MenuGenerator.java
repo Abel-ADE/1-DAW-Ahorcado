@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package aforcado;
+package aforcado.ui;
 
+import aforcado.model.HangMan;
 import java.util.Scanner;
 
 /**
@@ -22,23 +23,41 @@ public class MenuGenerator {
      *
      * @return a palabra a adiviñar.
      */
-    private String showInitMenu() {
-        WordGenerator newWordGenerator = new WordGenerator();
-        return newWordGenerator.generateWord();
+    private String showInitMenu() throws GenerateWordException {
+        Scanner scan = new Scanner(System.in);
+        String word = "";
 
+        System.out.println("Benvido ao Aforcado");
+        System.out.println("Elixe unha opción:");
+        System.out.println("1 - O programa xera a palabra a adiviñar");
+        System.out.println("2 - O usuario introduce unha palabra por teclado");
+
+        int option = scan.nextInt();
+
+        switch (option) {
+            case 1:
+                ArrayWordGenerator arrayWordGenerator = new ArrayWordGenerator();
+                word = arrayWordGenerator.generateWord();
+                break;
+            case 2:
+                KeyboardWordGenerator keyboardWordGenerator = new KeyboardWordGenerator();
+                word = keyboardWordGenerator.generateWord();
+                break;
+        }
+        return word;
     }
-    
+
     /**
      * Mostra a cabeceira do menú do xogo.
      */
-    private void showHeadMenu(){
+    private void showHeadMenu() {
         System.out.println("---------------------------------------------------");
-            System.out.println("Xogo do aforcado");
-            System.out.println("Esta é a palabra que tes que adiviñar: " + hangMan.showHiddenWord());
-            System.out.println("Número de intentos: " + (HangMan.MAX_FAILS - hangMan.getFails().size()));
-            System.out.println("Letras falladas: " + hangMan.getStringFails());
-            System.out.println("---------------------------------------------------");
-            System.out.println("");
+        System.out.println("Xogo do aforcado");
+        System.out.println("Esta é a palabra que tes que adiviñar: " + hangMan.showHiddenWord());
+        System.out.println("Número de intentos: " + (HangMan.MAX_FAILS - hangMan.getFails().size()));
+        System.out.println("Letras falladas: " + hangMan.getStringFails());
+        System.out.println("---------------------------------------------------");
+        System.out.println("");
     }
 
     /**
@@ -48,7 +67,7 @@ public class MenuGenerator {
      */
     private void showGameMenu() {
         do {
-            
+
             showHeadMenu();
 
             String line;
@@ -70,13 +89,13 @@ public class MenuGenerator {
 
         if (hangMan.maxFailsExceeded()) {
             showHeadMenu();
-            
+
             System.out.println("Perdiches...");
             System.out.println("A palabra a adiviñar era: " + hangMan.showFullWord());
             System.out.println("");
         } else if (hangMan.getHiddenWord().isVisible()) {
             showHeadMenu();
-            
+
             System.out.println("Gañaches!!");
         }
     }
@@ -98,8 +117,9 @@ public class MenuGenerator {
      * Nesta clase incluiremos o método principal que executa o programa.
      *
      * @param args the command line arguments.
+     * @throws aforcado.ui.GenerateWordException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws GenerateWordException {
         MenuGenerator menuGenerator = new MenuGenerator();
 
         do {

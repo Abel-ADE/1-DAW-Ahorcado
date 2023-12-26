@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package aforcado;
+package aforcado.model;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class HangMan {
     private HiddenWord hiddenWord;
     
     // ArrayList de caracteres no que se van almacenando as letras introducidas polo usuario
-    private ArrayList<Character> fails;
+    private final ArrayList<Character> fails;
 
     public HiddenWord getHiddenWord() {
         return hiddenWord;

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package aforcado;
+package aforcado.model;
 
 /**
  * Esta clase implementa a palabra a adiviñar coa que traballaremos no xogo, 
@@ -15,11 +15,11 @@ package aforcado;
 public class HiddenWord {
     
     //É un array de caracteres que almacena os caracteres da palabra.
-    private char characters [];
+    private final char characters [];
     
     // É un array de booleans marcarán con true aqueles caracteres da palabra 
     //que están acertados e con false os que aínda non o están.
-    private boolean hits [];
+    private final boolean hits [];
 
     /**
      * O construtor da clase que inicializa os dous arrays. 

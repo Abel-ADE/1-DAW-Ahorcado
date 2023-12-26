@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package aforcado;
+package aforcado.ui;
 
 /**
  * Esta clase encárgase de xerar a palabra a adiviñar. Polo momento, 
@@ -12,7 +12,7 @@ package aforcado;
  * 
  * @author Abel Iglesias Moure
  */
-public class WordGenerator {
+public class ArrayWordGenerator implements WordGenerator{
     
     /**
      * A lista de palabras posibles entre as que escoller a palabra oculta.
@@ -23,6 +23,7 @@ public class WordGenerator {
      * Devolve a palabra a adiviñar.
      * @return a palabra a adiviñar.
      */
+    @Override
     public String generateWord(){
         
         int index = new java.util.Random().nextInt(WORDLIST.length-1);
