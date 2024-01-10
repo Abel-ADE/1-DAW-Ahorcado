@@ -117,13 +117,18 @@ public class MenuGenerator {
      * Nesta clase incluiremos o método principal que executa o programa.
      *
      * @param args the command line arguments.
-     * @throws aforcado.ui.GenerateWordException
      */
-    public static void main(String[] args) throws GenerateWordException {
+    public static void main(String[] args) {
         MenuGenerator menuGenerator = new MenuGenerator();
 
         do {
-            menuGenerator.hangMan = new HangMan(menuGenerator.showInitMenu());
+            try {
+                menuGenerator.hangMan = new HangMan(menuGenerator.showInitMenu());
+            } catch (GenerateWordException e) {
+                if (e.isVisible()) {
+                    System.err.println(e.getMessage());
+                }
+            }
             menuGenerator.showGameMenu();
         } while (!menuGenerator.showExitMenu());
 
