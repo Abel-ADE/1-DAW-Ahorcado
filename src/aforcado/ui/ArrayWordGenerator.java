@@ -30,8 +30,5 @@ public class ArrayWordGenerator implements WordGenerator{
         
         return WORDLIST[index];
         
-    }
-    
-    
-    
+    }  
 }

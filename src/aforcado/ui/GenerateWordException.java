@@ -40,7 +40,4 @@ public class GenerateWordException extends Exception {
         super(message);
         this.visible = visible;
     }
-    
-    
-    
 }
