@@ -205,6 +205,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         jText.setColumns(5);
         jText.setEnabled(false);
+        jText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextActionPerformed(evt);
+            }
+        });
         jPanel3.add(jText);
 
         jButtonProve.setText("Probar");
@@ -262,6 +267,10 @@ public class MainWindow extends javax.swing.JFrame {
         jText.setText("");
         showGameStatus();
     }//GEN-LAST:event_jButtonProveActionPerformed
+
+    private void jTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextActionPerformed
+        jButtonProveActionPerformed(evt);
+    }//GEN-LAST:event_jTextActionPerformed
 
     /**
      * @param args the command line arguments
