@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Ventana principal da aplicación
+ *
  * @author Abel Iglesias Moure
  */
 public class MainWindow extends javax.swing.JFrame {
@@ -20,18 +21,38 @@ public class MainWindow extends javax.swing.JFrame {
     private HangMan hangMan;
     private JLabel[] hangManLabels;
 
+    /**
+     * Devolve o aforcado.
+     *
+     * @return o aforcado.
+     */
     public HangMan getHangMan() {
         return hangMan;
     }
 
+    /**
+     * Sobrescribe o aforcado.
+     *
+     * @param hangMan o aforcado.
+     */
     public void setHangMan(HangMan hangMan) {
         this.hangMan = hangMan;
     }
 
+    /**
+     * Devolve o array de labels.
+     *
+     * @return o array de labels.
+     */
     public JLabel[] getHangManLabels() {
         return hangManLabels;
     }
 
+    /**
+     * Sobrescribe o array de labels.
+     *
+     * @param hangManLabels o array de labels.
+     */
     public void setHangManLabels(JLabel[] hangManLabels) {
         this.hangManLabels = hangManLabels;
     }
@@ -46,6 +67,9 @@ public class MainWindow extends javax.swing.JFrame {
         jPanelRigth.add(img6);
     }
 
+    /**
+     * Inicia a partida.
+     */
     private void startNewGame() {
         String[] options = {"Un xogador, xerando a palabra ao azar", "Dous xogadores, introduce unha palabra por teclado"};
         String optionUser = (String) JOptionPane.showInputDialog(this, "Selecciona un modo de xogo", "Modo de xogo", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
@@ -58,7 +82,7 @@ public class MainWindow extends javax.swing.JFrame {
             if (optionUser.equals(options[0])) {
                 hangMan = new HangMan(new ArrayWordGenerator().generateWord());
                 newGame = true;
-            //Se elixe introducir a palabra por teclado
+                //Se elixe introducir a palabra por teclado
             } else {
                 try {
                     hangMan = new HangMan(new GUIKeyboardWordGenerator().generateWord());
@@ -69,7 +93,7 @@ public class MainWindow extends javax.swing.JFrame {
                     }
                 }
             }
-            
+
             if (newGame) {
                 jText.setEnabled(true);
                 jButtonProve.setEnabled(true);
@@ -79,6 +103,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Mostra o estado do xogo.
+     */
     private void showGameStatus() {
         jPanelRigth.remove(jPanelRigth.getComponent(0));
         jPanelRigth.add(hangManLabels[hangMan.getFails().size()]);
@@ -97,10 +124,13 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Recolle os caracteres. 
+     */
     private void tryChar() {
         if (!jText.getText().isEmpty() && jText.getText().matches("^[\\p{L}\\p{IsLatin}]+$")) {
             hangMan.tryChar(Character.toUpperCase(jText.getText().charAt(0)));
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Introduce unha letra do abecedario Español", "Letra incorrecta", JOptionPane.ERROR_MESSAGE);
         }
     }
