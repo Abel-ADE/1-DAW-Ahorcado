@@ -4,6 +4,8 @@
  */
 package aforcado.ui;
 
+import java.security.GeneralSecurityException;
+
 /**
  * Esta clase encárgase de xerar a palabra a adiviñar. Polo momento, 
  * simplemente mantén unha lista de palabras nun array e escolle unha aleatoriamente. 
@@ -24,7 +26,7 @@ public class ArrayWordGenerator implements WordGenerator{
      * @return a palabra a adiviñar.
      */
     @Override
-    public String generateWord(){
+    public String generateWord() throws GenerateWordException {
         
         int index = new java.util.Random().nextInt(WORDLIST.length-1);
         

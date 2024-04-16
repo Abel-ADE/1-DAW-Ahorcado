@@ -118,7 +118,7 @@ public class MenuGenerator {
      *
      * @param args the command line arguments.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
         MenuGenerator menuGenerator = new MenuGenerator();
 
         do {

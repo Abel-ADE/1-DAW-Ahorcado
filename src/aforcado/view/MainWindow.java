@@ -6,8 +6,10 @@ package aforcado.view;
 
 import aforcado.model.HangMan;
 import aforcado.ui.ArrayWordGenerator;
+import aforcado.ui.DBWordGenerator;
 import aforcado.ui.GUIKeyboardWordGenerator;
 import aforcado.ui.GenerateWordException;
+import aforcado.ui.WordGenerator;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -71,26 +73,30 @@ public class MainWindow extends javax.swing.JFrame {
      * Inicia a partida.
      */
     private void startNewGame() {
-        String[] options = {"Un xogador, xerando a palabra ao azar", "Dous xogadores, introduce unha palabra por teclado"};
+        String[] options = {"Un xogador, xerando a palabra ao azar", "Dous xogadores, introduce unha palabra por teclado", "Un xogador, xerando a palabra dende a Base de datos"};
         String optionUser = (String) JOptionPane.showInputDialog(this, "Selecciona un modo de xogo", "Modo de xogo", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
         if (optionUser != null) {
 
             boolean newGame = false;
+            WordGenerator myGenerator = null;
 
             //Se escolle a opción de un xogador
             if (optionUser.equals(options[0])) {
-                hangMan = new HangMan(new ArrayWordGenerator().generateWord());
-                newGame = true;
+                myGenerator = new ArrayWordGenerator();
                 //Se elixe introducir a palabra por teclado
-            } else {
-                try {
-                    hangMan = new HangMan(new GUIKeyboardWordGenerator().generateWord());
-                    newGame = true;
-                } catch (GenerateWordException ex) {
-                    if (ex.isVisible()) {
-                        System.err.println(ex.getMessage());
-                    }
+            } else if(optionUser.equals(options[1])) {
+                myGenerator = new GUIKeyboardWordGenerator();
+            }else{
+                myGenerator = new DBWordGenerator();
+            }
+
+            try {
+                hangMan = new HangMan(myGenerator.generateWord());
+                newGame = true;
+            } catch (GenerateWordException ex) {
+                if (ex.isVisible()) {
+                    System.err.println(ex.getMessage());
                 }
             }
 
@@ -125,7 +131,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     /**
-     * Recolle os caracteres. 
+     * Recolle os caracteres.
      */
     private void tryChar() {
         if (!jText.getText().isEmpty() && jText.getText().matches("^[\\p{L}\\p{IsLatin}]+$")) {
