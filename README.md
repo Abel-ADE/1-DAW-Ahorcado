@@ -1,4 +1,4 @@
-# Juego del ahorcado en Java
+# Juego del ahorcado en Java - 1º DAW
 
 Implementado con POO, siguiendo el patrón MVC, con persistencia de datos en MYSQL.
 
